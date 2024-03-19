@@ -1,0 +1,78 @@
+*{
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+.searchDiv{
+    display: flex;
+    padding: 1em;
+}
+.input{
+    width: 150px;
+    padding: 2px;
+    border: solid 1px black;
+    cursor:text;
+    border-radius:  10px 0 0 10px ; 
+}
+.search{
+    height: 7vh;
+    padding: .5em ;
+    border-radius: 0 10px 10px 0;
+    border: solid 1px black;
+    transition: 1s;
+    background: black;
+    color: wheat;
+    cursor: pointer;
+}
+.search::after{
+    content: "🔎";
+}
+.search:hover{
+    transition: 1s;
+    scale: 1.2;
+    background: whitesmoke;
+    color: black;
+    box-shadow: 0px 0px 10px 5px rgb(0, 0, 0);
+    border-radius: 10px;
+}
+.filterDiv{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:200px;
+    height: 100px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    gap: 2em;
+}
+select{
+    width: 200px;
+    padding: 2px;
+    border: solid 1px black;
+    cursor:pointer;
+    border-radius:  10px ;
+
+}
+.clearFilter{
+   
+    padding: 1em ;
+    border-radius: 10px;
+    border: solid 1px black;
+    transition: 1s;
+    background: black;
+    color: wheat;
+    cursor: pointer;
+}
+.clearFilter:hover{
+    transition: 1s;
+    scale: 1.2;
+    background: whitesmoke;
+    color: black;
+    box-shadow: 0px 0px 10px 5px rgb(0, 0, 0);
+    
+}

@@ -1,0 +1,100 @@
+*{
+border: 0;
+margin:0;
+padding: 0;
+}
+.NavBarform{
+    margin-bottom: 1em;
+    padding: .1em;
+    width: 100%;
+    background-color: rgb(218, 220, 240);
+    box-shadow: 0px 0px 20px 5px rgb(0, 0, 0);
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    top: 0;
+}
+
+.secionform{
+    position:relative;
+    margin:7em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(46, 34, 221 , .8), rgb(83, 14, 173));
+    box-shadow: 0 0 20px 5px rgb(0, 0, 0);
+    border-radius: 20px;
+    width: 600px;
+    height: 900px;
+    text-align: center;
+}
+.formcreate{ 
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr ;
+    grid-template-rows: 1fr 1fr 1fr 1fr 20px ;
+    row-gap: 1em;
+    background: linear-gradient(rgb(46, 34, 221), rgb(83, 14, 173));
+    box-shadow: 0 0 20px 5px rgb(0, 0, 0);
+    border-radius: 20px;
+    width: 90%;
+    height: 76%;
+    margin-top: 5em;
+}
+.h1form{
+    
+
+    position:absolute;
+    width: 553px;
+    left:0;
+    top:0;
+    padding: 1em;
+    background: rgba(0, 0 , 0 , .5);
+    border-radius: 20px 20px 0px 0px ;
+}
+
+.divsform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    border: solid 1px wheat;
+    border-radius: 1em;
+    box-shadow: 0 0 20px 5px rgb(255, 251, 251);
+    width: 300px;
+    transition: 1s;
+}
+.divsform:hover{
+    transition: 1s;
+    scale: 1.1;
+    background:linear-gradient(rgb(199, 5, 238), rgb(8, 68, 117))  ;
+    filter: brightness(2) 
+}
+
+.buttonform{
+    width: 200px;
+    padding: 1em;
+    border-radius: 10px;
+    border: solid 1px black;
+    transition: 1s;
+    background: black;
+    color: wheat;
+    margin-top: 40px;
+    cursor: pointer;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.buttonform:hover {
+    transition: 1s;
+    scale: 1.2;
+    background: whitesmoke;
+    color: black;
+    box-shadow: 0px 0px 10px 5px rgb(0, 0, 0);
+
+}
+label{
+    display: flex;
+    flex-direction: column;
+}
+
