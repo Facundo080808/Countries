@@ -1,19 +1,26 @@
+import axios from 'axios'
 import React from 'react'
 import "../Form/Form.css"
-import { useState } from 'react'
+import { useState , useEffect} from 'react'
 import NavBar from '../../components/NavBar/NavBar'
+import { useDispatch } from 'react-redux';
+import { postActivity } from '../../redux/actions/indexActions'
 const create = () => {
+    const dispatch = useDispatch();
+const [option , setOption] = useState([])
 const [activity, setActivity] = useState({
     name: "",
-    dificulty: "",
-    duration: "",
-    season: "",
+    dificulty: 0,
+    duration: 0,
+    season: [],
+    country:[]
 })
 const [error, setError] = useState({
     name: "obligatorio",
     dificulty: "obligatorio",
     duration: "",
-    season: "obligatorio",
+    season: "elegir una de las opciones",
+    country:"elegir uno de los paises"
 })
 
 const ValidateName= (input)=>{
@@ -61,8 +68,7 @@ const ValidateDuration = (input) =>{
     }
 }
 const handleChange = (event) => {
-   const { name, value } = event.target;
-
+   const { name, value , options} = event.target;
   setActivity(prevState => ({
         ...prevState,
         [name]: value
@@ -78,53 +84,102 @@ const handleChange = (event) => {
     }
     
 }
-const handleChangeSelect = ()=>{
+const handleChangeSelect = (event)=>{
+    const {name , value, options} = event.target;
+    
+    const selectedSeason = Array.from(options).filter((element) => element.select).map((element)=>element.value);
+    setActivity(prevState =>{
+       return{...prevState, [name]: selectedSeason} 
+    })
     setError((prevState)=>{
        return{ ...prevState,
         season:""}
     })
 }
 
+const handleChangeCountry = (e)=>{
+    const {name , value, options} = e.target;
+    const selectedCountry = Array.from(options).filter((element)=>element.selected).map((element)=>element.value);
+    setActivity(prevState =>{
+       return{...prevState,[name]: selectedCountry} 
+    })
+    setError((prevState)=>{
+        return{...prevState,country:""}
+    })
+}
+useEffect(()=>{
+    const selectCountries =async () =>{
+        try {
+            const response = await axios.get("http://localhost:3005/countries");
+            const data = response.data;
+            const names = data.map(element => element.name);
+            setOption(names);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+selectCountries()
+},[])
 
+const handleSubmit =async (e) =>{
+e.preventDefault();
+const dataToSend = {
+    name:activity.name,
+    dificulty:activity.dificulty,
+    duration:activity.duration,
+    season: activity.season,
+    country:activity.country
+}
+dispatch(postActivity(dataToSend));
+}
 return(
     <main className='maincreate'>
         <div className='NavBarform'><NavBar/></div>
         <section className='secionform'>
         
         <h1 className='h1form'>Aqui crearas tu actividad</h1>
-        <form className='formcreate' >
+        <form className='formcreate' onSubmit={handleSubmit}>
         <div className='divsform'>
-             <label><h2>Nombre</h2>
-                <input className="inputform" type="text" placeholder="Nombre de tu actividad" value= {activity.value} name='name' onChange={handleChange} />
+             <label className='name'><h2>Nombre</h2>
+                <input autoComplete="given-name" className="inputform" type="text" placeholder="Nombre de tu actividad" value= {activity.value} name='name' onChange={handleChange} />
                 <span><h2>{error.name}</h2></span>
                 </label>
         </div>
         <div className='divsform'>
-            <label ><h2>Dificultad</h2> :
+            <label htmlFor='dificulty' ><h2>Dificultad</h2> :
                  <input className="inputform" type="text" placeholder="Dificultad" value= {activity.value} name='dificulty' onChange={handleChange}  />
                  <span><h2>{error.dificulty}</h2></span>
             </label>
             </div>
             <div className='divsform'>
-            <label ><h2>Duración</h2>
+            <label htmlFor='duration'><h2>Duración</h2>
              <input className="inputform" type="text" placeholder="Duración" value= {activity.value} name ='duration' onChange={handleChange}/>
              <span><h2>{error.duration}</h2></span>
              </label>
         </div>
         <div className='divsform'>
-            <label><h2>Temporada</h2>
+            <label htmlFor='season'><h2>Temporada</h2>
             <select className="inputform" name='season' onChange={handleChangeSelect} >
-                <option ><h1>Summer</h1></option>
-                <option >Autumn</option>
-                <option >Winter</option>
-                <option >Spring</option>
+                <option value="Summer">Summer</option>
+                <option value="Autumn">Autumn</option>
+                <option value="Winter">Winter</option>
+                <option value="Spring">Spring</option>
             </select>
             <span><h2>{error.season}</h2></span>
             </label>
         </div>
+        <div className='divsform'>
+            <label htmlFor='country'><h2>Pais de tu actividad</h2>
+            <select className='inputform' onChange={handleChangeCountry} id='countrys'>
+               {option.map((name, index)=>(<option key={index}>{name}</option>))} 
+            </select>
+            <span><h2>{error.country}</h2></span>
+            </label>
+            
+        </div>
         </form>
            
-     { !error.name && !error.dificulty && !error.season && <button className='buttonform'><h1 className="send">Create</h1></button>}      
+     { !error.name && !error.dificulty && !error.season && !error.country && <button className='buttonform' onClick={handleChange}><h1 className="send">Create</h1></button>}      
         </section>
     </main>
 )
@@ -132,19 +187,3 @@ return(
 }
 
 export default create
-
-
-
-
-//const handleChangeForm = (event) => {
-  //  setActivity(prevState => {
-    //    return {
-      //      ...prevState,
-      //      [event.target.name]: event.target.value
-       // }
-//    })
- //   Validate({
- //       ...activity,
-  //      [event.target.name]: event.target.value
-   // })
-//}

@@ -66,6 +66,12 @@
     right: 0;
     z-index: 1;
     top: 0;
+    opacity: 0;
+    transition: 1s;
+}
+.NavDetail:hover{
+opacity: 1;
+transition: 1s;
 }
 .titleImg{
     display: flex;

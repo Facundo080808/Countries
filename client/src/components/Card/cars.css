@@ -29,7 +29,7 @@ padding: 0;
     backface-visibility: hidden;
     border-radius: 20px;
     transition:1s;
-
+    box-shadow: 0 0 10px 5px black;
 }
 .back{
     position: absolute;

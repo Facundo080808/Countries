@@ -1,6 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import "../filters/filter.css";
-export default function Filter({handleSubmit , handleChange}) {
+export default function Filter({handleSubmit , handleChange , countryFilter}) {
+    
+
+
     return <div  className="filterDiv">
             <button className="clearFilter"><h4>Clear Filter</h4></button>
              <form onChange={handleChange} className="form">
@@ -10,7 +14,7 @@ export default function Filter({handleSubmit , handleChange}) {
                     </div>
                      <div>
                     <h4>Alphabetically</h4>
-                    <select className="select">
+                    <select className="select"  >
                         <option value="None" selected>None</option>
                         <option value="A-Z">A-Z</option>
                         <option value="Z-A">Z-A</option>

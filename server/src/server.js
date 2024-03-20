@@ -9,8 +9,6 @@ server.use(cors());
 server.use(express.json());
 server.use(morgan("dev"));
 server.use(router);
-
-server.use(cors());
 server.use(router);
 
 

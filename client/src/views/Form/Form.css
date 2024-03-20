@@ -9,7 +9,7 @@ padding: 0;
     width: 100%;
     background-color: rgb(218, 220, 240);
     box-shadow: 0px 0px 20px 5px rgb(0, 0, 0);
-    position: absolute;
+    position: fixed;
     right: 0;
     z-index: 1;
     top: 0;
@@ -17,7 +17,8 @@ padding: 0;
 
 .secionform{
     position:relative;
-    margin:7em;
+    padding: 2em;
+    margin-top:6em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,7 +34,7 @@ padding: 0;
     display: grid;
     place-items: center;
     grid-template-columns: 1fr ;
-    grid-template-rows: 1fr 1fr 1fr 1fr 20px ;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 20px ;
     row-gap: 1em;
     background: linear-gradient(rgb(46, 34, 221), rgb(83, 14, 173));
     box-shadow: 0 0 20px 5px rgb(0, 0, 0);
@@ -41,12 +42,14 @@ padding: 0;
     width: 90%;
     height: 76%;
     margin-top: 5em;
+    padding: 1em;
+
 }
 .h1form{
     
 
-    position:absolute;
-    width: 553px;
+    position: absolute;
+    width: 93%;
     left:0;
     top:0;
     padding: 1em;
@@ -59,7 +62,8 @@ padding: 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2em;
+    padding: 1em;
+
     border: solid 1px wheat;
     border-radius: 1em;
     box-shadow: 0 0 20px 5px rgb(255, 251, 251);

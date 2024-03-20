@@ -1,8 +1,9 @@
-import { GET_COUNTRIES , GET_COUNTRIES_NAME } from "../actions/indexActions";
+import { GET_COUNTRIES , GET_COUNTRIES_NAME , POST_ACTIVITY } from "../actions/indexActions";
 
 let initialState = {
     countries : [],
     DefaultCountry : [],
+    activities : [],
 }
 
 const RootReducer = (state = initialState , action) =>{
@@ -11,6 +12,9 @@ const RootReducer = (state = initialState , action) =>{
             return {...state , countries: action.payload }
         case GET_COUNTRIES_NAME:
             return {...state , countries: action.payload }
+        case POST_ACTIVITY:
+            return {...state , activities: action.payload}
+
         default:
             return state;
     }

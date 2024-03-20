@@ -10,7 +10,6 @@ const Card = ({country}) => {
     backgroundRepeat:"no-repeat",
     backgroundPosition: 'center',
     }
-  
   return(
       <div className="card-main">
      <div className="card" >
@@ -29,7 +28,7 @@ const Card = ({country}) => {
      </div>
      )
     }
-
+    export default Card;
    //aqui va el invento
    // position:"absolute",
     //width:"100%",
@@ -67,5 +66,5 @@ const Card = ({country}) => {
 
 
 
-  export default Card;
+  
   

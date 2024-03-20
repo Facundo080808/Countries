@@ -1,7 +1,7 @@
 import axios from "axios";
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_COUNTRIES_NAME = "GET_COUNTRIES_NAME";
-
+export const POST_ACTIVITY= "POST_ACTIVITY";
 
 export const getCountries = () => {
    return async (dispatch) => {
@@ -26,3 +26,23 @@ export const getCountriesByName = (name) => {
 
    }
 }
+export const postActivity = (activity) =>{
+   return async(dispatch) =>{
+      try {
+         const formattedActivity = {
+            ...activity,
+            name: activity.name.charAt(0).toUpperCase() + activity.name.slice(1),
+        };
+        const response = await axios.post("http://localhost:3005/activities/create" , formattedActivity)
+        const data = response.data;
+        console.log("funciono" + data);
+        return dispatch({
+         type : "POST_ACTIVITY",
+         payload: data,
+        })
+      } catch (error) {
+         alert(error.message)
+      }
+  }
+}
+

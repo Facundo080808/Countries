@@ -6,6 +6,7 @@ import Cards from "../../components/Cards/Cards.jsx"
 import NavBar from "../../components/NavBar/NavBar.jsx"
 import Filter from "../../components/filters/filter.jsx"
 import {getCountries , getCountriesByName} from "../../redux/actions/indexActions.js"
+import { all } from "axios"
 const Home = () => {
     const dispatch = useDispatch();
     const allCountries = useSelector((state) => state.countries);
@@ -36,6 +37,11 @@ useEffect(() => {
     
     })
 },[dispatch])
+useEffect(()=>{
+    setCountryFilter([...allCountries].sort((a,b)=>{
+    a.name.localeCompare(b.name)
+    }))
+},[])
 
 
 return(
@@ -45,10 +51,10 @@ return(
                 <li><NavBar/></li>  
             </ul>
         </nav>
-        <div className="divCardsFilter">
+        <div className="divCardsFilter">    
         <nav className="filters">
             <ol>
-                <li> <Filter handleSubmit={handleSubmit} handleChange={handleChange}/> </li>    
+                <li> <Filter handleSubmit={handleSubmit} handleChange={handleChange} /> </li>    
             </ol>
         </nav>
         <div className="divCards"><Cards allCountries={countryFilter}/></div>
