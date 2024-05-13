@@ -6,6 +6,7 @@ import axios from "axios";
 const Detail = () => {
   const {id} = useParams();
   const [idDetail , setIdDetail] = useState(null)
+  const duracion = "Duracion : ";
   //console.log(id);
     useEffect(()=>{
         
@@ -31,26 +32,29 @@ const Detail = () => {
             <section className="sectionDetails">
                 <section className="sectionDiv">
                     <article className="titleImg">
-                    <figure className="figureContainer"><img src={idDetail[0].flag}className="countryImg"/></figure>
-                     <h2 className="title">{idDetail[0].name}</h2>
+                    <figure className="figureContainer"><img src={idDetail.image_url}className="countryImg"/></figure>
+                     <h2 className="title">{idDetail.name}</h2>
                     </article>
                         
                     <article className="countryDetails">
-                        <h2>{idDetail[0].id}</h2>
-                        <h2>{idDetail[0].continent}</h2>  
-                        <h2>{idDetail[0].capital}</h2>
-                        <h3>{idDetail[0].subregion}</h3>
-                        <h3>{idDetail[0].area}</h3>
-                        <h3>{idDetail[0].population}</h3>
+                        <h2>{idDetail.id}</h2>
+                        <h2>{idDetail.continent}</h2>  
+                        <h2>{idDetail.capital}</h2>
+                        <h3>{idDetail.subregion}</h3>
+                        <h3>{idDetail.area}</h3>
+                        <h3>{idDetail.population}</h3>
                     </article>
                 
                 </section>
                 <aside className="asideDetails">
-                    <h1 className="title">Activities</h1>
-                    <h2>Nombre</h2>
-                    <h2>Dificultad</h2>
-                    <h2>Duracion</h2>
-                    <h2>Temporada</h2>
+                    <h1 className="title">
+                        {idDetail.activities[0] ? "Actividades" : "Aun no tienes actividades en este pais , Crealas!"}
+                    </h1>
+                    <h2>{idDetail.activities[0] && "Nombre : " + idDetail.activities[0].name}</h2>
+                    <h2> {idDetail.activities[0] && "Dificultad : " + idDetail.activities[0].dificulty}</h2>
+                    <h2>{idDetail.activities[0] && idDetail.activities[0].duration && "Duracion : " + idDetail.activities[0].duration + "Hs"}</h2>
+                    <h2>{idDetail.activities[0] && "Estacion : " + idDetail.activities[0].season}</h2>
+                    <h2></h2>
                 </aside>
             </section>
                 

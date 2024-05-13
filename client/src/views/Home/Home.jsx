@@ -19,15 +19,15 @@ const Home = () => {
     }
     const handleSubmit = (event) =>{
         event.preventDefault();
-        const country = search.trim()
-        dispatch(getCountriesByName(country))
-        //const country = allCountries.filter((element) => element.name.toLowerCase().includes(search));
-        //setCountryFilter(country);
+       // const country = search.trim()
+        //dispatch(getCountriesByName(country))
+        const country = allCountries.filter((element) => element.name.toLowerCase().includes(search));
+        setCountryFilter(country);
     }
 //otra forma de hacerlo es borrando este useEffect y descomentando el codigo de arriba .
-    useEffect(() => {
-        setCountryFilter(allCountries);
-    }, [allCountries]);
+    //useEffect(() => {
+     //   setCountryFilter(allCountries);
+    //}, [allCountries]);
 
 useEffect(() => {
     dispatch(getCountries());
@@ -37,11 +37,11 @@ useEffect(() => {
     
     })
 },[dispatch])
-useEffect(()=>{
-    setCountryFilter([...allCountries].sort((a,b)=>{
-    a.name.localeCompare(b.name)
-    }))
-},[])
+//useEffect(()=>{
+  //  setCountryFilter([...allCountries].sort((a,b)=>{
+   // a.name.localeCompare(b.name)
+   // }))
+//},[])
 
 
 return(
@@ -52,11 +52,12 @@ return(
             </ul>
         </nav>
         <div className="divCardsFilter">    
-        <nav className="filters">
+       <nav className="filters">
             <ol>
                 <li> <Filter handleSubmit={handleSubmit} handleChange={handleChange} /> </li>    
             </ol>
-        </nav>
+        </nav> 
+        
         <div className="divCards"><Cards allCountries={countryFilter}/></div>
             
         </div>

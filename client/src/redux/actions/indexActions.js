@@ -17,7 +17,7 @@ export const getCountries = () => {
 
 export const getCountriesByName = (name) => {
    return async (dispatch) =>{
-      const response = await axios.get(`http://localhost:3005/countries/${name}`)
+      const response = await axios.get(`http://localhost:3005/countries/country/${name}`)
       return dispatch({
         type : "GET_COUNTRIES_NAME",
         payload : response.data
@@ -33,7 +33,7 @@ export const postActivity = (activity) =>{
             ...activity,
             name: activity.name.charAt(0).toUpperCase() + activity.name.slice(1),
         };
-        const response = await axios.post("http://localhost:3005/activities/create" , formattedActivity)
+        const response = await axios.post("http://localhost:3005/activities/createc" , formattedActivity)
         const data = response.data;
         console.log("funciono" + data);
         return dispatch({

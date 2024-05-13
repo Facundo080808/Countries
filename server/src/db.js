@@ -2,28 +2,29 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require('fs');
 const path = require('path');
-const countryModel = require("./models/CountryModel");
-const activityModel = require("./models/ActivityModel");
+const CountryModel = require("./models/CountryModel");
+const ActivityModel = require("./models/ActivityModel");
+
 
 
 const {
   DB_USER, DB_PASSWORD, DB_HOST
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countrypi`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countriespi`, {
   logging: false, 
-  //native: false, 
+  native: false, 
 });
 
 
-countryModel(sequelize);
-activityModel(sequelize);
 
-const {country,activity} = sequelize.models;
 
-country.belongsToMany(activity, {through: "country_activity"});
-activity.belongsToMany(country, {through: "country_activity"});
 
+CountryModel(sequelize);
+ActivityModel(sequelize);
+const {countries,activities} = sequelize.models;
+countries.belongsToMany(activities, {through: "country_activity"});
+activities.belongsToMany(countries, {through: "country_activity"});
 
 
 
@@ -43,7 +44,7 @@ activity.belongsToMany(country, {through: "country_activity"});
 
 
 
-
+console.log(sequelize.models);
 
 module.exports = {
    ...sequelize.models,   

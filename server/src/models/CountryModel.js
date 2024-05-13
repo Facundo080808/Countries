@@ -1,40 +1,51 @@
 const {DataTypes} = require('sequelize');
 
-module.exports = (sequelize) => { return sequelize.define('country', {
+module.exports = (sequelize) => { return sequelize.define('countries', {
         id:{
-            type: DataTypes.STRING(3),
+            type: DataTypes.STRING,
             primaryKey: true,
-            allowNull : false
+            allowNull : false,
+            field:'id'
         },
         name:{
             type: DataTypes.STRING,  
-            allowNull : false
+            allowNull : false,
+            field:'nombre'
         },
-        img:{
+        image_url:{
             type: DataTypes.STRING,
-            allowNull : false
+            allowNull : false,
+            field:'imagendelabandera'
         },
         continent:{
             type: DataTypes.STRING,
-            allowNull : false
+            allowNull : false,
+            field:'continente'
         },
         capital:{
             type: DataTypes.STRING,
-            allowNull : false
+            allowNull : false,
+            field:'capital'
         },
-        Subregion:{
+        subregion:{
             type: DataTypes.STRING,
-            allowNull : false
+            defaultValue : 'unknown',
+            field:'subregion'
         },
         area:{
-            type: DataTypes.INTEGER,
-            allowNull : false
+            type: DataTypes.FLOAT,
+            defaultValue : 0,
+            field:'area'
         },
         population:{
             type: DataTypes.INTEGER,
-            allowNull : false
+            allowNull : false,
+            field:'poblacion'
         }
-    },{timestamps: false }
+    },{timestamps: false,
+        modelName:'countries',
+        tableName:'countries'
+    }
     )   
 }
  

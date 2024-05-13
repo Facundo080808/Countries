@@ -66,15 +66,14 @@ padding: 0;
 
     border: solid 1px wheat;
     border-radius: 1em;
-    box-shadow: 0 0 20px 5px rgb(255, 251, 251);
+    box-shadow: 0 0 20px 5px rgb(184, 147, 147);
     width: 300px;
     transition: 1s;
 }
 .divsform:hover{
     transition: 1s;
     scale: 1.1;
-    background:linear-gradient(rgb(199, 5, 238), rgb(8, 68, 117))  ;
-    filter: brightness(2) 
+    box-shadow: 0 0 20px 5px rgb(190, 10, 10);
 }
 
 .buttonform{

@@ -1,5 +1,4 @@
 import axios from 'axios'
-import React from 'react'
 import "../Form/Form.css"
 import { useState , useEffect} from 'react'
 import NavBar from '../../components/NavBar/NavBar'
@@ -179,7 +178,7 @@ return(
         </div>
         </form>
            
-     { !error.name && !error.dificulty && !error.season && !error.country && <button className='buttonform' onClick={handleChange}><h1 className="send">Create</h1></button>}      
+     { !error.name && !error.dificulty && !error.season && !error.country && <button className='buttonform' onClick={handleSubmit}><h1 className="send">Create</h1></button>}      
         </section>
     </main>
 )
