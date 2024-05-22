@@ -19,7 +19,7 @@ padding: 0;
     
 }
 
-.front{
+.frente{
     display: flex;
     justify-content: center;
     align-items:end ;
@@ -31,7 +31,7 @@ padding: 0;
     transition:1s;
     box-shadow: 0 0 10px 5px black;
 }
-.back{
+.atras{
     position: absolute;
     width: 100%;
     height: 100%;
@@ -47,23 +47,30 @@ padding: 0;
     transition:1s;
     
 }
-.card:hover .front {
+.card:hover .frente {
     transform: perspective(600px) rotatey(180deg);
     scale: 1.1;
     
 }
 
-.card:hover .back{
+.card:hover .atras{
     transform: perspective(600px) rotatey(360deg);
     scale: 1.1;
     
 }
+
+
+
+
+
+
+
 .Detail{
     padding-top: 1em;
     border-top: solid 1px whitesmoke;
     color: black;
 }
-.front .name{
+.frente .name{
     padding: 1em;
     width: 100%;
     bottom: 0;

@@ -1,9 +1,10 @@
 import axios from 'axios'
 import "../Form/Form.css"
-import { useState , useEffect} from 'react'
+import { useState , useEffect } from 'react'
 import NavBar from '../../components/NavBar/NavBar'
 import { useDispatch } from 'react-redux';
 import { postActivity } from '../../redux/actions/indexActions'
+
 const create = () => {
     const dispatch = useDispatch();
 const [option , setOption] = useState([])
@@ -11,8 +12,8 @@ const [activity, setActivity] = useState({
     name: "",
     dificulty: 0,
     duration: 0,
-    season: [],
-    country:[]
+    season: "",
+    country:""
 })
 const [error, setError] = useState({
     name: "obligatorio",
@@ -80,6 +81,12 @@ const handleChange = (event) => {
     }
     else if (name ==="duration") {
         return ValidateDuration(value)
+    }
+    else if (name === "season") {
+        return ValidateName(value)
+    }
+    else if(name ==="country"){
+        return ValidateName(value)
     }
     
 }
@@ -158,27 +165,29 @@ return(
         </div>
         <div className='divsform'>
             <label htmlFor='season'><h2>Temporada</h2>
-            <select className="inputform" name='season' onChange={handleChangeSelect} >
+            <input type="text" className='inputform' placeholder='Escribe una estacion del año' value={activity.season } name='season' onChange={handleChange} />
+            {/*<select className="inputform" name='season' onChange={handleChangeSelect} >
                 <option value="Summer">Summer</option>
                 <option value="Autumn">Autumn</option>
                 <option value="Winter">Winter</option>
                 <option value="Spring">Spring</option>
-            </select>
+            </select>*/}
             <span><h2>{error.season}</h2></span>
             </label>
         </div>
         <div className='divsform'>
             <label htmlFor='country'><h2>Pais de tu actividad</h2>
-            <select className='inputform' onChange={handleChangeCountry} id='countrys'>
+            <input type="text" className='inputform' placeholder='Escribe el pais donde se realizara tu actividad' value={activity.country} name='country' onChange={handleChange} />
+           {/**  <select className='inputform' onChange={handleChangeCountry} id='countrys'>
                {option.map((name, index)=>(<option key={index}>{name}</option>))} 
-            </select>
+            </select>*/}
             <span><h2>{error.country}</h2></span>
             </label>
             
         </div>
         </form>
            
-     { !error.name && !error.dificulty && !error.season && !error.country && <button className='buttonform' onClick={handleSubmit}><h1 className="send">Create</h1></button>}      
+     { !error.name && !error.dificulty && <button className='buttonform' onClick={handleSubmit}><h1 className="send">Create</h1></button>}      
         </section>
     </main>
 )

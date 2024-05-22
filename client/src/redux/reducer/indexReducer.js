@@ -1,23 +1,44 @@
-import { GET_COUNTRIES , GET_COUNTRIES_NAME , POST_ACTIVITY } from "../actions/indexActions";
+import { createSlice } from '@reduxjs/toolkit'
 
 let initialState = {
     countries : [],
-    DefaultCountry : [],
+    filtredCountries : [],
     activities : [],
+    loading: false,
+    error:null
 }
 
-const RootReducer = (state = initialState , action) =>{
-    switch (action.type) {
-        case GET_COUNTRIES:
-            return {...state , countries: action.payload }
-        case GET_COUNTRIES_NAME:
-            return {...state , countries: action.payload }
-        case POST_ACTIVITY:
-            return {...state , activities: action.payload}
 
-        default:
-            return state;
+const Reducer = createSlice({
+    name: 'countries',
+    initialState,
+    reducers:{
+        getName : (state,action)=>{
+            state.filtredCountries = action.payload;
+            state.loading = false;
+            state.error =null;
+        },
+        getAllCountries : (state , action)=>{
+            state.countries = action.payload
+            state.loading = false;
+            state.error =null;
+        },
+        post : (state, action)=>{
+            state.activities = action.payload;
+            state.loading = false;
+            state.error = null;
+        },
+        setLoading : (state , action)=> {
+            state.loading = true;
+        },
+        setError : (state, action)=>{
+            state.loading = false;
+            state.error = action.payload;
+         },
     }
-}
+        
+        
+})
 
-export default RootReducer
+export const { getAllCountries, setLoading, setError, post, getName} = Reducer.actions;
+export default Reducer.reducer;
